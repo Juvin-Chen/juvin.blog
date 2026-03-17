@@ -46,7 +46,9 @@ func (ctrl *ArticleController) Create(c *gin.Context) {
 
 	// 处理标签
 	for _, tid := range req.TagIDs {
-		article.Tags = append(article.Tags, model.Tag{Model: model.Model{ID: tid}})
+		tag := model.Tag{}
+		tag.ID = tid
+		article.Tags = append(article.Tags, tag)
 	}
 
 	if err := ctrl.service.CreateArticle(article); err != nil {

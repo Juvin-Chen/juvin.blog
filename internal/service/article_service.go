@@ -58,7 +58,9 @@ func (s *ArticleService) UpdateArticle(id uint, data map[string]interface{}) err
 		var tags []model.Tag
 		for _, tid := range tagIDs {
 			if idFloat, ok := tid.(float64); ok {
-				tags = append(tags, model.Tag{Model: model.Model{ID: uint(idFloat)}})
+				tag := model.Tag{}
+				tag.ID = uint(idFloat)
+				tags = append(tags, tag)
 			}
 		}
 		article.Tags = tags
